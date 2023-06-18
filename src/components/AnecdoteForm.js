@@ -1,25 +1,35 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNewAnecdote } from "../services/anecdotes";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import anecdoteContext from "../AnecdoteContext";
 
 const AnecdoteForm = () => {
-	const query = useQueryClient();
+	// Form States
+
+	const [content, setContent] = useState("");
+	const [author, setAuthor] = useState("");
+	const [info, setInfo] = useState("");
+
+	// Context Api
 	const [state, dispatch] = useContext(anecdoteContext);
 
+	// React Query
+	const query = useQueryClient();
+
+	// React Query Mutation
 	const mutation = useMutation(createNewAnecdote, {
 		onSuccess: (anecdote) => {
-			const anecdotes = query.getQueryData(["anecdotes"]);
-			query.setQueryData(["anecdotes"], anecdotes.concat(anecdote));
+			// const anecdotes = query.getQueryData(["anecdotes"]);
+			// query.setQueryData(["anecdotes"], anecdotes.concat(anecdote));
+			dispatch({ type: "ADD", payload: anecdote });
 		},
 	});
 
 	const onCreate = (event) => {
 		event.preventDefault();
-		const content = event.target.anecdote.value;
-		mutation.mutate(content);
+
+		mutation.mutate({ content, author, info, votes: 0 });
 		dispatch({ type: "MESSAGE", payload: { message: `${content} was created successfully`, display: true } });
-		event.target.anecdote.value = "";
 
 		setTimeout(() => {
 			dispatch({ type: "MESSAGE", payload: { message: "", display: false } });
@@ -28,10 +38,21 @@ const AnecdoteForm = () => {
 
 	return (
 		<div>
-			<h3>create new</h3>
+			<h2>create a new anecdote</h2>
 			<form onSubmit={onCreate}>
-				<input name="anecdote" />
-				<button type="submit">create</button>
+				<div>
+					content
+					<input name="content" value={content} onChange={(e) => setContent(e.target.value)} />
+				</div>
+				<div>
+					author
+					<input name="author" value={author} onChange={(e) => setAuthor(e.target.value)} />
+				</div>
+				<div>
+					url for more info
+					<input name="info" value={info} onChange={(e) => setInfo(e.target.value)} />
+				</div>
+				<button>create</button>
 			</form>
 		</div>
 	);

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import anecdoteContext from "../AnecdoteContext";
 
 const Notification = () => {
-	const [state, dispatch] = useContext(anecdoteContext);
+	const [state] = useContext(anecdoteContext);
 
 	const style = {
 		border: "solid",

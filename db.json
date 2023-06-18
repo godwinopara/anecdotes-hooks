@@ -2,48 +2,66 @@
   "anecdotes": [
     {
       "content": "If it hurts, do it more often",
+      "author": "Jezz Smart",
+      "info": "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
       "id": "47145",
       "votes": 2
     },
     {
       "content": "Adding manpower to a late software project makes it later!",
+      "author": "Jeff Bezoz",
+      "info": "http://wiki.c2.com/?PrematureOptimization",
       "id": "21149",
       "votes": 5
     },
     {
       "content": "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
+      "author": "Micheal Smith",
+      "info": "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
       "id": "69581",
       "votes": 4
     },
     {
       "content": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+      "author": "James Morgan",
+      "info": "http://wiki.c2.com/?PrematureOptimization",
       "id": "36975",
       "votes": 3
     },
     {
       "content": "Premature optimization is the root of all evil.",
+      "author": "Johnson Farde",
+      "info": "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
       "id": "25170",
       "votes": 2
     },
     {
       "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+      "author": "Emmanuel Solomon",
+      "info": "http://wiki.c2.com/?PrematureOptimization",
       "id": "98312",
       "votes": 0
     },
     {
-      "content": "Learning Redux is Awesome",
+      "content": "If it hurts, do it more often",
+      "author": "Jez Humble",
+      "info": "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
       "votes": 0,
-      "id": "NLtgpvd"
+      "id": "35822"
     },
     {
-      "content": "Learning React Query is Awesome",
-      "votes": 1,
-      "id": "2yiUWig"
+      "content": "Premature optimization is the root of all evil",
+      "author": "Donald Knuth",
+      "info": "http://wiki.c2.com/?PrematureOptimization",
+      "votes": 0,
+      "id": "1739bh"
     },
     {
-      "content": "It's working now",
+      "content": "New anecdoete",
+      "author": "Godwin Smith",
+      "info": "https://godwin.com",
       "votes": 0,
-      "id": "SL0Kera"
+      "id": "GtbqQGZ"
     }
   ]
 }

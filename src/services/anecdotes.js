@@ -9,7 +9,7 @@ const getAll = async () => {
 };
 
 const createNewAnecdote = async (anecdote) => {
-	const newAnecdotesData = await axios.post(BASE_URL, { content: anecdote, votes: 0 });
+	const newAnecdotesData = await axios.post(BASE_URL, anecdote);
 	const data = await newAnecdotesData.data;
 	return data;
 };
