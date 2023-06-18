@@ -2,8 +2,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNewAnecdote } from "../services/anecdotes";
 import { useContext, useState } from "react";
 import anecdoteContext from "../AnecdoteContext";
+import { useNavigate } from "react-router-dom";
 
 const AnecdoteForm = () => {
+	//
+	const navigate = useNavigate();
+
 	// Form States
 
 	const [content, setContent] = useState("");
@@ -19,9 +23,8 @@ const AnecdoteForm = () => {
 	// React Query Mutation
 	const mutation = useMutation(createNewAnecdote, {
 		onSuccess: (anecdote) => {
-			// const anecdotes = query.getQueryData(["anecdotes"]);
-			// query.setQueryData(["anecdotes"], anecdotes.concat(anecdote));
 			dispatch({ type: "ADD", payload: anecdote });
+			navigate("/");
 		},
 	});
 
