@@ -8,9 +8,9 @@ import { useField } from "../hooks";
 const AnecdoteForm = () => {
 	// Form Hooks
 
-	const content = useField("text");
-	const author = useField("author");
-	const info = useField("text");
+	const { reset: resetContent, ...content } = useField("text");
+	const { reset: resetAuthor, ...author } = useField("author");
+	const { reset: resetInfo, ...info } = useField("text");
 
 	// React Router Navigate
 	const navigate = useNavigate();
@@ -40,6 +40,13 @@ const AnecdoteForm = () => {
 		}, 3000);
 	};
 
+	const resetForm = async (e) => {
+		e.preventDefault();
+		resetContent();
+		resetAuthor();
+		resetInfo();
+	};
+
 	return (
 		<div>
 			<h2>Create a new anecdote</h2>
@@ -58,6 +65,7 @@ const AnecdoteForm = () => {
 					<input {...info} />
 				</div>
 				<button>create</button>
+				<button onClick={resetForm}>reset</button>
 			</form>
 		</div>
 	);
