@@ -3,16 +3,17 @@ import { createNewAnecdote } from "../services/anecdotes";
 import { useContext, useState } from "react";
 import anecdoteContext from "../AnecdoteContext";
 import { useNavigate } from "react-router-dom";
+import { useField } from "../hooks";
 
 const AnecdoteForm = () => {
-	//
+	// Form Hooks
+
+	const content = useField("text");
+	const author = useField("author");
+	const info = useField("text");
+
+	// React Router Navigate
 	const navigate = useNavigate();
-
-	// Form States
-
-	const [content, setContent] = useState("");
-	const [author, setAuthor] = useState("");
-	const [info, setInfo] = useState("");
 
 	// Context Api
 	const [state, dispatch] = useContext(anecdoteContext);
@@ -31,8 +32,8 @@ const AnecdoteForm = () => {
 	const onCreate = (event) => {
 		event.preventDefault();
 
-		mutation.mutate({ content, author, info, votes: 0 });
-		dispatch({ type: "MESSAGE", payload: { message: `${content} was created successfully`, display: true } });
+		mutation.mutate({ content: content.value, author: author.value, info: info.value, votes: 0 });
+		dispatch({ type: "MESSAGE", payload: { message: `${content.value} was created successfully`, display: true } });
 
 		setTimeout(() => {
 			dispatch({ type: "MESSAGE", payload: { message: "", display: false } });
@@ -41,19 +42,20 @@ const AnecdoteForm = () => {
 
 	return (
 		<div>
-			<h2>create a new anecdote</h2>
+			<h2>Create a new anecdote</h2>
 			<form onSubmit={onCreate}>
 				<div>
 					content
-					<input name="content" value={content} onChange={(e) => setContent(e.target.value)} />
+					<input type={content.type} value={content.value} onChange={content.onChange} />
 				</div>
+
 				<div>
 					author
-					<input name="author" value={author} onChange={(e) => setAuthor(e.target.value)} />
+					<input type={author.type} value={author.value} onChange={author.onChange} />
 				</div>
 				<div>
 					url for more info
-					<input name="info" value={info} onChange={(e) => setInfo(e.target.value)} />
+					<input {...info} />
 				</div>
 				<button>create</button>
 			</form>
